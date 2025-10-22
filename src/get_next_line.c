@@ -1,43 +1,83 @@
 #include "../include/get_next_line.h"
 
-int count_n(char *str)
+int	line_len(char *str)
 {
-    //Zenbatu zenbet caracter dauz /n-arte read(fd, buffer, r) apurka apurka irakurtzeko
+	int	i;
+	char	del;
+
+	i = 0;
+	del = '\n';
+	while (str[i])
+	{
+		if (str[i] == del)
+			break;
+		i++;
+	}
+	return (i);
 }
 
-char    *get_next_line(int fd)
+int	is_line(char *str)
 {
-    static char    buffer[100];
-    static  int bytes;
-    static  int i = 0;
+	int	i;
+	char	del;
+
+	i = 0;
+	del = '\n';
+	while (str[i])
+	{
+		if (str[i] == del)
+			return (1);
+		i++;
+	}
+	return (0);
+}
+
+char	*cpy_buffer(char *str)
+{
+	static char	*line;
+	// static
+
+}
+
+char	*get_next_line(int fd)
+{
+	static char	buffer[1024];
+	static int	bytes;
+	static int	i = 0;
     
-    bytes = read(fd, buffer + i, 100 - i);
-    if (bytes <= 0)
-        return NULL;
-    buffer[bytes + i] = '\0';
-    printf("%i", buffer[i]);
-    while (buffer[i + 1])
-    {
-        if (buffer[i] == '\n')
-            break;
-            write(1, &buffer[i], 1);
-        i++;
-    }
-    //printf("%i\n", i);
-    write(1, "\n", 1);
-    return (buffer);
+	while (bytes = read(fd, buffer, 10))
+	{
+		if (bytes <= 0)
+			return NULL;
+		buffer[bytes] = '\0';
+		printf("buffer %s\n", buffer);
+	}
+
+
+	bytes = read(fd, buffer, 10);
+	if (bytes <= 0)
+		return NULL;
+	while (!is_line(buffer))
+	{
+		
+	}
+
+/* 	buffer[bytes] = '\0';
+	printf("buffer %s", buffer); */
+
+	return (buffer);
 }
 
-int main(void)
+int	main(void)
 {
-    int fd = open("../fitx.txt", O_RDONLY);
+	int fd = open("../fitx.txt", O_RDONLY);
 
-    if (fd == -1)
-        return (1);
-    get_next_line(fd);
-    get_next_line(fd);
-    get_next_line(fd);
-    // printf("%s", get_next_line(3));
-    close (fd);
-    return (0);
+	if (fd == -1)
+		return (1);
+	get_next_line(fd);
+	/* get_next_line(fd);
+	get_next_line(fd); */
+	// printf("%s", get_next_line(3));
+	close (fd);
+	return (0);
 }
