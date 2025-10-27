@@ -2,7 +2,9 @@
 
 int ft_str_len(char *str)
 {
-    int i = 0;
+    int i;
+
+	i = 0;
     if (!str)
         return (0);
     while (str[i])
@@ -12,7 +14,9 @@ int ft_str_len(char *str)
 
 int is_line(char *str)
 {
-    int i = 0;
+    int i;
+
+	i = 0;
     if (!str)
         return (0);
     while (str[i])
@@ -26,12 +30,16 @@ int is_line(char *str)
 
 char    *str_join(char *s1, char *s2)
 {
-    int len1 = ft_str_len(s1);
-    int len2 = ft_str_len(s2);
+    int len1;
+    int len2;
     char    *new_str;
-    int i = 0;
-    int j = 0;
+    int i;
+    int j;
 
+	len1 = ft_str_len(s1);
+	len2 = ft_str_len(s2);
+	i = 0;
+	j = 0;
     if (!s2 || len2 == 0)
         return (s1);
     new_str = malloc(len1 + len2 + 1);
@@ -56,9 +64,10 @@ char    *str_join(char *s1, char *s2)
 
 char    *extract_line(char *stash)
 {
-    int i = 0;
+    int	i;
     char    *line;
 
+	i = 0;
     if (!stash || !stash[0])
         return (NULL);
     while (stash[i] && stash[i] != '\n')
@@ -82,11 +91,13 @@ char    *extract_line(char *stash)
 
 char    *save_remainder(char *stash)
 {
-    int len_line = 0;
+    int len_line;
     int len_total;
     char    *new_stash;
-    int i = 0;
+    int i;
 
+	len_line = 0;
+	i = 0;
     if (!stash || !stash[0])
         return (NULL);
     while (stash[len_line] && stash[len_line] != '\n')
