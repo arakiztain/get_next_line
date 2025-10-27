@@ -1,83 +1,32 @@
-#include "../include/get_next_line.h"
-
-int	line_len(char *str)
-{
-	int	i;
-	char	del;
-
-	i = 0;
-	del = '\n';
-	while (str[i])
-	{
-		if (str[i] == del)
-			break;
-		i++;
-	}
-	return (i);
-}
-
-int	is_line(char *str)
-{
-	int	i;
-	char	del;
-
-	i = 0;
-	del = '\n';
-	while (str[i])
-	{
-		if (str[i] == del)
-			return (1);
-		i++;
-	}
-	return (0);
-}
-
-char	*cpy_buffer(char *str)
-{
-	static char	*line;
-	// static
-
-}
+#include "get_next_line.h"
 
 char	*get_next_line(int fd)
 {
-	static char	buffer[1024];
-	static int	bytes;
-	static int	i = 0;
-    
-	while (bytes = read(fd, buffer, 10))
+	static char	*stash;
+	char		*buffer;
+	char		*line;
+	int		bytes;
+
+	if (fd < 0 || BUFFER_SIZE <= 0)
+		return (NULL);
+	buffer = malloc(BUFFER_SIZE + 1);
+	if (!buffer)
+		return (NULL);
+	bytes = 1;
+	while (!is_line(stash) && bytes > 0)
 	{
-		if (bytes <= 0)
-			return NULL;
+		bytes = read(fd, buffer, BUFFER_SIZE);
+		if (bytes < 0)
+		{
+			free(stash);
+			stash = NULL;
+			return (free(buffer), NULL);
+		}
 		buffer[bytes] = '\0';
-		printf("buffer %s\n", buffer);
+		stash = str_join(stash, buffer);
 	}
-
-
-	bytes = read(fd, buffer, 10);
-	if (bytes <= 0)
-		return NULL;
-	while (!is_line(buffer))
-	{
-		
-	}
-
-/* 	buffer[bytes] = '\0';
-	printf("buffer %s", buffer); */
-
-	return (buffer);
-}
-
-int	main(void)
-{
-	int fd = open("../fitx.txt", O_RDONLY);
-
-	if (fd == -1)
-		return (1);
-	get_next_line(fd);
-	/* get_next_line(fd);
-	get_next_line(fd); */
-	// printf("%s", get_next_line(3));
-	close (fd);
-	return (0);
+	line = extract_line(stash);
+	stash = save_remainder(stash);
+	free(buffer);
+	return (line);
 }
