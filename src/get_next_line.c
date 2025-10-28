@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   get_next_line.c                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: arakiztain <arakiztain@student.42.fr>      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/10/28 12:34:17 by arakiztain        #+#    #+#             */
+/*   Updated: 2025/10/28 12:38:31 by arakiztain       ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "get_next_line.h"
 
 char	*get_next_line(int fd)
@@ -5,7 +17,7 @@ char	*get_next_line(int fd)
 	static char	*stash;
 	char		*buffer;
 	char		*line;
-	int		bytes;
+	int			bytes;
 
 	if (fd < 0 || BUFFER_SIZE <= 0)
 		return (NULL);
@@ -17,11 +29,7 @@ char	*get_next_line(int fd)
 	{
 		bytes = read(fd, buffer, BUFFER_SIZE);
 		if (bytes < 0)
-		{
-			free(stash);
-			stash = NULL;
-			return (free(buffer), NULL);
-		}
+			return (free(stash), stash = NULL, free(buffer), NULL);
 		buffer[bytes] = '\0';
 		stash = str_join(stash, buffer);
 	}
