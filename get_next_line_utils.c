@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line_utils.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arakiztain <arakiztain@student.42.fr>      +#+  +:+       +#+        */
+/*   By: garakizt <garakizt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/28 12:34:32 by arakiztain        #+#    #+#             */
-/*   Updated: 2025/10/28 12:53:45 by arakiztain       ###   ########.fr       */
+/*   Updated: 2025/11/05 14:01:11 by garakizt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 

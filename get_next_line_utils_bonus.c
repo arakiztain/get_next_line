@@ -5,16 +5,17 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: arakiztain <arakiztain@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/11/10 10:55:10 by arakiztain        #+#    #+#             */
-/*   Updated: 2025/11/10 13:05:08 by arakiztain       ###   ########.fr       */
+/*   Created: 2025/10/28 13:16:29 by arakiztain        #+#    #+#             */
+/*   Updated: 2025/10/28 13:19:30 by arakiztain       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line_bonus.h"
+#include <stdlib.h>
 
 int	ft_str_len(char *str)
 {
-	int	i;
+	int		i;
 
 	i = 0;
 	if (!str)
@@ -26,7 +27,7 @@ int	ft_str_len(char *str)
 
 int	is_line(char *str)
 {
-	int	i;
+	int		i;
 
 	i = 0;
 	if (!str)
@@ -103,7 +104,7 @@ char	*save_remainder(char *stash)
 	len_line = 0;
 	i = 0;
 	if (!stash || !stash[0])
-		return (free(stash), NULL);
+		return (NULL);
 	while (stash[len_line] && stash[len_line] != '\n')
 		len_line++;
 	if (stash[len_line] == '\n')
